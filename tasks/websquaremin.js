@@ -19,9 +19,8 @@ module.exports = function(grunt) {
 		});
 
         this.files.forEach(function (file) {
-            var scriptRegex = /(<script type=[\"\']javascript[\"\']><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/i,
-                scriptBody,
-                result,
+            var scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
+                tempArray = [],
                 min,
                 max = file.src.filter(function(filepath) {
                     // Warn on and remove invalid source files (if nonull was set).
@@ -36,9 +35,15 @@ module.exports = function(grunt) {
                     .join(grunt.util.normalizelf(grunt.util.linefeed));
 
             try {
-                scriptBody = scriptRegex.exec(max);
-                result = uglify.parse(scriptBody[2], {});
-                max = max.replace(scriptRegex, "$1" + result.print_to_string() + "$3");
+                while( ( tempArray = scriptRegex.exec(max) ) ) {
+                    grunt.log.writeln('tempArray[2]\n' + tempArray[2]);
+//                    scriptBody.push.apply( scriptBody, tempArray );
+                }
+
+                max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
+                    return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
+                });
+                grunt.log.writeln('max\n' + max);
             } catch (err) {
                 grunt.warn(file.src + '\n' + err);
             }
