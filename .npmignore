@@ -1,4 +1,6 @@
-.npmignore
-.travis.yml
-test
-Grunfile.js
+.git*
+.idea
+node_modules/
+tmp/
+.gitignore
+npm-debug.log
