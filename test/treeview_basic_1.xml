@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:w2="http://www.inswave.com/websquare" xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <w2:buildDate/>
+        <xf:model>
+			<xf:instance>
+				<data xmlns="">
+					<resGongTree>
+						<vector beforeServletCall='1247477576923'
+							beforeEJBCall='1247477576923' afterServletCall='1247477576993'
+							afterEJBCall='1247477576993' result='75'>
+							<data vectorkey='0' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='01' />
+									<gong_depth value='1.0000' />
+									<gong_nm value='다사 문화복지센터 건립공사' />
+									<volumn value='1' />
+									<material_cost
+										value='1128846088.244' />
+									<labor_cost value='1872896072.516' />
+									<guard_cost value='97566397' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='temp1' />
+									<regist_date value='' />
+									<modify_no value='999999' />
+									<modify_date
+										value='2009-07-08 18:06:29' />
+								</table01>
+							</data>
+							<data vectorkey='1' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='0101' />
+									<gong_depth value='2.0000' />
+									<gong_nm value='건축공사' />
+									<volumn value='1' />
+									<material_cost
+										value='1128846088.244' />
+									<labor_cost value='1872896072.516' />
+									<guard_cost value='97566397' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='temp1' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='2' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010101' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='가설공사' />
+									<volumn value='1' />
+									<material_cost value='95424826' />
+									<labor_cost value='304056549' />
+									<guard_cost value='47803576' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='temp1' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='3' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010102' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='기초및토공사' />
+									<volumn value='1' />
+									<material_cost value='9610396' />
+									<labor_cost value='12558496' />
+									<guard_cost value='13316536' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='temp1' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='4' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010103' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='철근콘크리트공사' />
+									<volumn value='1' />
+									<material_cost value='207297923.02' />
+									<labor_cost value='1223473574.18' />
+									<guard_cost value='26949066' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='20' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='0102' />
+									<gong_depth value='2.0000' />
+									<gong_nm value='인테리어공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='21' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010201' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='돌및타일공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='22' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010202' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='목공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='27' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010207' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='기타공사[인테리어공사]' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='28' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='01020701' />
+									<gong_depth value='4.0000' />
+									<gong_nm value='타일 및 석공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='29' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='01020702' />
+									<gong_depth value='4.0000' />
+									<gong_nm value='목공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='35' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='010208' />
+									<gong_depth value='3.0000' />
+									<gong_nm value='골재대' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+							<data vectorkey='36' type='Document'>
+								<table01>
+									<pro_code value='82356500' />
+									<gong_code value='0103' />
+									<gong_depth value='2.0000' />
+									<gong_nm value='태양광지지대공사' />
+									<volumn value='1' />
+									<material_cost value='0' />
+									<labor_cost value='0' />
+									<guard_cost value='0' />
+									<cost_except value='' />
+									<gong_type value='' />
+									<gover_type value='F' />
+									<calc_reason value='' />
+									<marks value='' />
+									<regist_no value='' />
+									<regist_date value='' />
+									<modify_no value='' />
+									<modify_date value='' />
+								</table01>
+							</data>
+						</vector>
+					</resGongTree>
+					<response1>
+						<tree>
+							<node>
+								<label>1.일반컴포넌트</label>
+								<value>1</value>
+								<image />
+								<selectedImage />
+								<expandedImage />
+								<node>
+									<label>11.XFORMS</label>
+									<value>11</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>111.input</label>
+										<value>111</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+										<node>
+											<label>
+												111.inputasdfasdfasdf
+											</label>
+											<value>111</value>
+											<image />
+											<selectedImage />
+											<expandedImage />
+											<node>
+												<label>
+													111.inputasdfasdfasdf
+												</label>
+												<value>111</value>
+												<image />
+												<selectedImage />
+												<expandedImage />
+											</node>
+										</node>
+									</node>
+									<node>
+										<label>112.output</label>
+										<value>112</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>113.switch</label>
+										<value>113</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+								<node>
+									<label>12.W2</label>
+									<value>12</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>121.tabContainer</label>
+										<value>121</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>122.tabSwitch</label>
+										<value>122</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>123.na</label>
+										<value>123</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+								<node>
+									<label>23.Third Party</label>
+									<value>23</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>231.navermap</label>
+										<value>231</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>232.googlemap</label>
+										<value>232</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>233.flickr</label>
+										<value>233</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+							</node>
+							<node>
+								<label>2.고급컴포넌트</label>
+								<value>2</value>
+								<image />
+								<selectedImage />
+								<expandedImage />
+								<node>
+									<label>21.XFORMS</label>
+									<value>21</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>211.repeat</label>
+										<value>211</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>212.select1</label>
+										<value>212</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>213.select</label>
+										<value>213</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+								<node>
+									<label>22.W2</label>
+									<value>22</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>221.grid</label>
+										<value>221</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>222.input</label>
+										<value>222</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>223.input</label>
+										<value>223</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+								<node>
+									<label>23.Third Party</label>
+									<value>23</value>
+									<image />
+									<selectedImage />
+									<expandedImage />
+									<node>
+										<label>231.input</label>
+										<value>231</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>232.input</label>
+										<value>232</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+									<node>
+										<label>233.input</label>
+										<value>233</value>
+										<image />
+										<selectedImage />
+										<expandedImage />
+									</node>
+								</node>
+							</node>
+						</tree>
+					</response1>
+					<res>
+						<shopping>
+							<vector>
+								<data ref="1"> 
+									<label>outer</label> 
+									<value>1-1</value> 
+									<depth>2</depth> 
+									<chk></chk> 
+									<excChk></excChk> 
+									<img></img> 
+									<folder>true</folder> 
+								</data> 
+								<data ref="1"> 
+									<label>bottom</label> 
+									<value>1-2</value> 
+									<depth>2</depth> 
+									<chk></chk> 
+									<excChk></excChk> 
+									<img></img> 
+									<folder>true</folder> 
+								</data> 
+								<data ref="1"> 
+									<label>dress</label>
+									<value>1-3</value> 
+									<depth>2</depth> 
+									<chk>T</chk> 
+									<excChk></excChk> 
+									<img></img> 
+									<folder>false</folder> 
+								</data>
+							</vector>
+						</shopping>
+					</res>
+				</data>
+			</xf:instance>
+		</xf:model>
+        <script type="javascript"><![CDATA[ 
+        
+        function test(){
+			
+			WebSquare.wUnit.start();
+			
+			//appendData
+			//WebSquare.wUnit.addCommand("set","trigger1.click()");
+			//WebSquare.wUnit.addCommand("pause","500");
+			
+			//findNode
+			WebSquare.wUnit.addCommand("set","trigger2.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getSelectedLabel
+			WebSquare.wUnit.addCommand("set","trigger3.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getSelectedLabel()","기타공사[인테리어공사]");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getSelectedValue
+			WebSquare.wUnit.addCommand("set","trigger4.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getSelectedValue()","0103");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//isLeaf
+			WebSquare.wUnit.addCommand("set","trigger5.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.isLeaf()","true");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//disableCheckboxByValue
+			WebSquare.wUnit.addCommand("set","trigger6.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getParentValue
+			WebSquare.wUnit.addCommand("set","trigger7.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getParentValue( '010202' )","0102");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getChildData
+			WebSquare.wUnit.addCommand("set","trigger8.click()");
+			WebSquare.wUnit.addCommand("assert","textarea1.getValue()","3");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getXPathByValue
+			WebSquare.wUnit.addCommand("set","trigger9.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getXPathByValue( '010208' )","resGongTree/vector/data[table01/gong_code/@value='010208']");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//spanAll(false)
+			WebSquare.wUnit.addCommand("set","trigger10.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//spanAll(true)
+			WebSquare.wUnit.addCommand("set","trigger11.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//collapseNode
+			WebSquare.wUnit.addCommand("set","trigger12.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//expandNode
+			WebSquare.wUnit.addCommand("set","trigger13.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//checkByValue
+			WebSquare.wUnit.addCommand("set","trigger14.click()");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getCheckedValues
+			WebSquare.wUnit.addCommand("set","trigger15.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getCheckedValues()","0103,010102,010202,01020701");
+			WebSquare.wUnit.addCommand("pause","500");
+			
+			//getCheckedLabels
+			WebSquare.wUnit.addCommand("set","trigger16.click()");
+			WebSquare.wUnit.addCommand("assert","treeview3.getCheckedLabels()","태양광지지대공사,기초및토공사,목공사,타일 및 석공사");
+			
+			WebSquare.wUnit.run();
+			WebSquare.wUnit.stop();
+			
+			}
+			
+//			test();
+        
+        ]]></script>
+    </head>
+    <body>
+    	<xf:output
+    		style="position:absolute;vertical-align:middle;word-wrap:break-word;top:20px;left:285px;width:148px;height:21px;background-color:#eeeeee;"
+    		id="output1">
+    		<xf:label>recursive</xf:label>
+    	</xf:output>
+    	<xf:output
+    		style="position:absolute;vertical-align:middle;word-wrap:break-word;top:20px;left:545px;width:148px;height:21px;background-color:#eeeeee;"
+    		id="output2">
+    		<xf:label>listed</xf:label>
+    	</xf:output>
+    	<xf:output
+    		style="position:absolute;vertical-align:middle;word-wrap:break-word;top:20px;left:25px;width:148px;height:21px;background-color:#eeeeee;"
+    		id="output3">
+    		<xf:label>inline</xf:label>
+    	</xf:output>
+    	<w2:treeview id="treeview2"
+    		style="border:1px solid black;vertical-align:middle;word-wrap:break-word;background-color:#ffff80;top:50px;width:200px;position:absolute;height:280px;left:285px;"
+    		labelonClickClass="tree2">
+    		<w2:itemset nodeset="response1/tree/node">
+    			<w2:label ref="label" />
+    			<w2:value ref="value" />
+    			<w2:image ref="" />
+    			<w2:selectedImage ref="" />
+    			<w2:expandedImage ref="" />
+    		</w2:itemset>
+    		<script ev:event="onclick" type="javascript"><![CDATA[ 
+//					alert(  treeview2.getSelectedLabel() );
+
+			]]></script>
+    	</w2:treeview>
+    	<w2:treeview
+    		style="border:1px solid black;position:absolute;vertical-align:middle;word-wrap:break-word;top:50px;left:25px;width:200px;height:280px;background-color:#ffff80;"
+    		id="treeview1">
+    		<w2:node>
+    			<w2:label>a1</w2:label>
+    			<w2:value>1</w2:value>
+    			<w2:checkbox></w2:checkbox>
+    			<w2:image></w2:image>
+    			<w2:selectedImage></w2:selectedImage>
+    			<w2:expandedImage></w2:expandedImage>
+    			<w2:node>
+    				<w2:label>a11</w2:label>
+    				<w2:value>11</w2:value>
+    				<w2:checkbox></w2:checkbox>
+    				<w2:image></w2:image>
+    				<w2:selectedImage></w2:selectedImage>
+    				<w2:expandedImage></w2:expandedImage>
+    				<w2:node>
+    					<w2:label>a111</w2:label>
+    					<w2:value>111</w2:value>
+    					<w2:checkbox></w2:checkbox>
+    					<w2:image></w2:image>
+    					<w2:selectedImage></w2:selectedImage>
+    					<w2:expandedImage></w2:expandedImage>
+    				</w2:node>
+
+    				<w2:node>
+    					<w2:label>a112</w2:label>
+    					<w2:value>112</w2:value>
+    					<w2:checkbox></w2:checkbox>
+    					<w2:image></w2:image>
+    					<w2:selectedImage></w2:selectedImage>
+    					<w2:expandedImage></w2:expandedImage>
+    				</w2:node>
+    			</w2:node>
+    			<w2:node>
+    				<w2:label>a12</w2:label>
+    				<w2:value>12</w2:value>
+    				<w2:checkbox></w2:checkbox>
+    				<w2:image></w2:image>
+    				<w2:selectedImage></w2:selectedImage>
+    				<w2:expandedImage></w2:expandedImage>
+    			</w2:node>
+    			<w2:node>
+    				<w2:label>a13</w2:label>
+    				<w2:value>13</w2:value>
+    				<w2:checkbox></w2:checkbox>
+    				<w2:image></w2:image>
+    				<w2:selectedImage></w2:selectedImage>
+    				<w2:expandedImage></w2:expandedImage>
+    			</w2:node>
+    		</w2:node>
+    		<w2:node>
+    			<w2:label>a2</w2:label>
+    			<w2:value>2</w2:value>
+    			<w2:checkbox></w2:checkbox>
+    			<w2:image></w2:image>
+    			<w2:selectedImage></w2:selectedImage>
+    			<w2:expandedImage></w2:expandedImage>
+    			<w2:node>
+    				<w2:label>a21</w2:label>
+    				<w2:value>21</w2:value>
+    				<w2:checkbox></w2:checkbox>
+    				<w2:image></w2:image>
+    				<w2:selectedImage></w2:selectedImage>
+    				<w2:expandedImage></w2:expandedImage>
+    			</w2:node>
+    		</w2:node>
+    		<w2:node>
+    			<w2:label>a333333333333</w2:label>
+    			<w2:value>3</w2:value>
+    			<w2:checkbox></w2:checkbox>
+    			<w2:image></w2:image>
+    			<w2:selectedImage></w2:selectedImage>
+    			<w2:expandedImage></w2:expandedImage>
+    		</w2:node>
+    		<script type="javascript" ev:event="ondrop(dragNode, dropNode, dragControl, dropControl, e)"><![CDATA[
+				alert("1 " + dragControl.id + " -> " + dropControl.id);
+				// 자기자신에게 drag drop할때는 node만 appendNode를 통해 변경해주면 된다
+    			this.appendNode(dropNode, dragNode);
+    		 ]]></script>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+				alert('click');
+			]]></script>
+    		<script ev:event="ontoggleclick(nodeElement,index,isRendered)" type="javascript"><![CDATA[
+				alert( index + " : " + isRendered );
+			]]></script>
+    	</w2:treeview>
+    	<w2:treeview
+    		style="border:1px solid black;vertical-align:middle;word-wrap:break-word;background-color:#ffff80;position:absolute;top:50px;left:545px;width:200px;height:280px;"
+    		id="treeview3" tooltipDisplay="true" dataType="listed"
+    		rowHeight="20" toggleEvent="ondblclick" checkAllChildNodes=""
+    		showCheckbox="true">
+    		<w2:itemset nodeset="resGongTree/vector/data">
+    			<w2:label ref="table01/gong_nm/@value"></w2:label>
+    			<w2:value ref="table01/gong_code/@value"></w2:value>
+    			<w2:depth ref="table01/gong_depth/@value"></w2:depth>
+    			<w2:checkbox ref=""></w2:checkbox>
+    			<w2:iconImage ref=""></w2:iconImage>
+    			<w2:image ref=""></w2:image>
+    			<w2:selectedImage ref=""></w2:selectedImage>
+    			<w2:expandedImage ref=""></w2:expandedImage>
+    		</w2:itemset>
+    	</w2:treeview>
+    	<xf:trigger id="trigger1"
+    		style="position: absolute ;height:25px;width:150px;left:92px;top:360px;"
+    		type="button">
+    		<xf:label>appendData</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var xmlDoc = WebSquare.ModelUtil.findInstanceNodes( "res/shopping/vector/data[@ref='"+value+"']" );
+    		
+    		treeview2.appendData(0, xmlDoc);
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger2"
+    		style="position: absolute ;height:25px;width:150px;left:92px;top:385px;"
+    		type="button">
+    		<xf:label>findNode</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.findNode( '01020702' );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger3"
+    		style="position: absolute ;height:25px;width:150px;left:92px;top:410px;"
+    		type="button">
+    		<xf:label>getSelectedLabel</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.findNode( '010207' );
+    		
+    		var returnValue = treeview3.getSelectedLabel();
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger4"
+    		style="position: absolute ;height:25px;width:150px;left:92px;top:435px;"
+    		type="button">
+    		<xf:label>getSelectedValue</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.findNode( '0103' );
+    		
+    		var returnValue = treeview3.getSelectedValue();
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger5"
+    		style="position: absolute ;height:25px;width:150px;left:92px;top:460px;"
+    		type="button">
+    		<xf:label>isLeaf</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.findNode( '01020701' );
+    		
+    		var returnValue = treeview3.isLeaf();
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger6"
+    		style="position: absolute ;height:25px;width:150px;left:242px;top:360px;"
+    		type="button">
+    		<xf:label>disableCheckboxByValue</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.disableCheckboxByValue( '010102' , true , true );
+    		treeview3.disableCheckboxByValue( '010202' , true , true );
+    		treeview3.disableCheckboxByValue( '01020701' , true , true );
+    		treeview3.disableCheckboxByValue( '0103' , true , true );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger7"
+    		style="position: absolute ;height:25px;width:150px;left:242px;top:385px;"
+    		type="button">
+    		<xf:label>getParentValue</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var returnValue = treeview3.getParentValue( '010202' );
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger8"
+    		style="position: absolute ;height:25px;width:150px;left:242px;top:410px;"
+    		type="button">
+    		<xf:label>getChildData</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var returnValue = treeview3.getChildData( '01' );
+    		var doc = WebSquare.xml.indent( returnValue[0] );
+
+    		textarea1.setValue( returnValue.length );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger9"
+    		style="position: absolute ;height:25px;width:150px;left:242px;top:435px;"
+    		type="button">
+    		<xf:label>getXPathByValue</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var returnValue = treeview3.getXPathByValue( '010208' );
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger10"
+    		style="position: absolute ;height:25px;width:150px;left:392px;top:360px;"
+    		type="button">
+    		<xf:label>spanAll(false)</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.spanAll( false );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger11"
+    		style="position: absolute ;height:25px;width:150px;left:392px;top:385px;"
+    		type="button">
+    		<xf:label>spanAll(true)</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.spanAll( true );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger12"
+    		style="position: absolute ;height:25px;width:150px;left:392px;top:410px;"
+    		type="button">
+    		<xf:label>collapseNode</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.collapseNode( '010207' );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger13"
+    		style="position: absolute ;height:25px;width:150px;left:392px;top:435px;"
+    		type="button">
+    		<xf:label>expandNode</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.expandNode( '010207' );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger14"
+    		style="position: absolute ;height:25px;width:150px;left:542px;top:360px;"
+    		type="button">
+    		<xf:label>checkByValue</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		treeview3.checkByValue( '010102' , true , true );
+    		treeview3.checkByValue( '010202' , true , true );
+    		treeview3.checkByValue( '01020701' , true , true );
+    		treeview3.checkByValue( '0103' , true , true );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger15"
+    		style="position: absolute ;height:25px;width:150px;left:542px;top:385px;"
+    		type="button">
+    		<xf:label>getCheckedValues</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var returnValue = treeview3.getCheckedValues();
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:trigger id="trigger16"
+    		style="position: absolute ;height:25px;width:150px;left:542px;top:410px;"
+    		type="button">
+    		<xf:label>getCheckedLabels</xf:label>
+    		<script ev:event="onclick" type="javascript"><![CDATA[
+    		
+    		var returnValue = treeview3.getCheckedLabels();
+    		output4.setValue( returnValue );
+    		
+    		 ]]></script>
+    	</xf:trigger>
+    	<xf:output id="output4"
+    		style="position: absolute ;left:276px;top:519px;width: 221px;height: 71px;"
+    		label="">
+    		<xf:label></xf:label>
+    	</xf:output>
+    	<xf:textarea id="textarea1"
+    		style="position: absolute ;left: 709px;top: 360px;width: 227px;height: 202px;">
+    	</xf:textarea>
+    </body>
+</html>
