@@ -2,10 +2,6 @@ grunt-contrib-websquaremin
 ==========================
 > Minify WebSquare XML ( include internal javascript )
 
-grunt-contrib-websquaremin
-==========================
-> Minify WebSquare XML ( include internal javascript )
-
 Getting Started
 ==========================
 
