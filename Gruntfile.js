@@ -11,7 +11,20 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         clean: {
-            tests: ['tmp']
+            tests: ['tmp'],
+            traverse: ['dest']
+        },
+        copy: {
+            main: {
+                files: [
+                    {expand: true, src: ['src/**'], dest: 'dest/'}
+                ]
+            },
+            cwd: {
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ]
+            }
         },
         websquaremin: {
             compile: {
@@ -24,7 +37,9 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('tasks');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('test', ['clean', 'websquaremin']);
+    grunt.registerTask('test', ['clean:tests', 'websquaremin:compile']);
+    grunt.registerTask('traverse', ['clean:traverse', 'copy:cwd']);
     grunt.registerTask('default', ['test']);
 };
