@@ -31,6 +31,11 @@ module.exports = function(grunt) {
                 files: {
                     'tmp/treeview_basic_1.xml': ['test/treeview_basic_1.xml']
                 }
+            },
+            traverse: {
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ]
             }
         }
     });
@@ -40,6 +45,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('test', ['clean:tests', 'websquaremin:compile']);
-    grunt.registerTask('traverse', ['clean:traverse', 'copy:cwd']);
+    grunt.registerTask('traverse', ['clean:traverse', 'websquaremin:traverse']);
     grunt.registerTask('default', ['test']);
 };

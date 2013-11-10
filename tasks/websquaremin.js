@@ -18,6 +18,71 @@ module.exports = function(grunt) {
 			preserveComments: false
 		});
 
+        grunt.verbose.writeflags(options, 'Options');
+
+        var dest;
+        var isExpandedPair;
+        var tally = {
+            dirs: 0,
+            files: 0
+        };
+
+        var detectDestType = function(dest) {
+            if (grunt.util._.endsWith(dest, '/')) {
+                return 'directory';
+            } else {
+                return 'file';
+            }
+        };
+
+        var unixifyPath = function(filepath) {
+            if (process.platform === 'win32') {
+                return filepath.replace(/\\/g, '/');
+            } else {
+                return filepath;
+            }
+        };
+
+        this.files.forEach( function( filePair ) {
+//            debugger;
+
+            isExpandedPair = filePair.orig.expand || false;
+
+            filePair.src.forEach( function( src ) {
+                debugger;
+                if( detectDestType( filePair.dest ) === 'directory' ) {
+                    dest = (isExpandedPair) ? filePair.dest : unixifyPath(path.join(filePair.dest, src));
+                } else {
+                    dest = filePair.dest;
+                }
+
+                if (grunt.file.isDir(src)) {
+                    grunt.verbose.writeln('Creating ' + dest.cyan);
+//                    grunt.file.mkdir(dest);
+                    tally.dirs++;
+                } else {
+                    grunt.verbose.writeln('Copying ' + src.cyan + ' -> ' + dest.cyan);
+//                    grunt.file.copy(src, dest, copyOptions);
+//                    if (options.mode !== false) {
+//                        fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);
+//                    }
+                    tally.files++;
+                }
+            });
+        });
+
+        if (tally.dirs) {
+            grunt.log.write('Created ' + tally.dirs.toString().cyan + ' directories');
+        }
+
+        if (tally.files) {
+            grunt.log.write((tally.dirs ? ', minified ' : 'Minified ') + tally.files.toString().cyan + ' files');
+        }
+
+        grunt.log.writeln();
+
+
+/*
         this.files.forEach(function (file) {
             var scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
                 min,
@@ -55,5 +120,6 @@ module.exports = function(grunt) {
                 helper.minMaxInfo(min, max);
             }
         });
+*/
     });
 };
