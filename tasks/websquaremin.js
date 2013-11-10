@@ -11,37 +11,35 @@ module.exports = function(grunt) {
 
     var pd = require('pretty-data').pd,
         helper = require('grunt-lib-contrib').init(grunt),
-        uglify = require('uglify-js');
+        uglify = require('uglify-js'),
+        _s = require('underscore.string');
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
         var options = this.options({
-			preserveComments: false
-		});
+			    preserveComments: false
+		    }),
+            dest,
+            isExpandedPair,
+            tally = {
+                dirs: 0,
+                files: 0
+            },
+            detectDestType = function( dest ) {
+                if( _s.endsWith( dest, '/' ) ) {
+                    return 'directory';
+                } else {
+                    return 'file';
+                }
+            },
+            unixifyPath = function(filepath) {
+                if (process.platform === 'win32') {
+                    return filepath.replace(/\\/g, '/');
+                } else {
+                    return filepath;
+                }
+            };
 
         grunt.verbose.writeflags(options, 'Options');
-
-        var dest;
-        var isExpandedPair;
-        var tally = {
-            dirs: 0,
-            files: 0
-        };
-
-        var detectDestType = function(dest) {
-            if (grunt.util._.endsWith(dest, '/')) {
-                return 'directory';
-            } else {
-                return 'file';
-            }
-        };
-
-        var unixifyPath = function(filepath) {
-            if (process.platform === 'win32') {
-                return filepath.replace(/\\/g, '/');
-            } else {
-                return filepath;
-            }
-        };
 
         this.files.forEach( function( filePair ) {
 //            debugger;
@@ -61,7 +59,7 @@ module.exports = function(grunt) {
 //                    grunt.file.mkdir(dest);
                     tally.dirs++;
                 } else {
-                    grunt.verbose.writeln('Copying ' + src.cyan + ' -> ' + dest.cyan);
+                    grunt.verbose.writeln('Minifing ' + src.cyan + ' -> ' + dest.cyan);
 //                    grunt.file.copy(src, dest, copyOptions);
 //                    if (options.mode !== false) {
 //                        fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);
