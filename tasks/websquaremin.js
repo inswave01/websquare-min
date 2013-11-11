@@ -32,6 +32,7 @@ module.exports = function(grunt) {
                 jpg: 0
             },
             scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
+            styleRegex = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/style>)/ig,
             min = '',
             max = '',
             detectDestType = function( dest ) {
@@ -75,7 +76,33 @@ module.exports = function(grunt) {
                 } else {
                     return filepath;
                 }
+            },
+            minifyJS = function( source, options ) {
+                return uglify.parse( source, options ).print_to_string();
+            },
+            minifyCSS = function( source, options ) {
+                return new CleanCSS( options ).minify( source );
+            },
+            printSummary = function() {
+                if( tally.dirs ) {
+                    grunt.log.write( 'Created ' + tally.dirs.toString().cyan + ' directories' );
+                }
+
+                if( tally.xml ) {
+                    grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
+                }
+
+                if( tally.js ) {
+                    grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
+                }
+
+                if( tally.css ) {
+                    grunt.log.write( ( tally.css ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
+                }
+
+                grunt.log.writeln();
             };
+
 
         grunt.verbose.writeflags( options, 'Options' );
 
@@ -97,21 +124,24 @@ module.exports = function(grunt) {
                     fileType = detectFileType( src );
                     grunt.verbose.writeln( fileType + ' Minifing ' + src.cyan + ' -> ' + dest.cyan);
 
-                    debugger;
-
                     max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
 
                     try {
                         if( fileType === 'XML' ) {
                             max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
-                                return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
+                                return g1 + minifyJS( g2, {} ) + g3;
+                            });
+
+                            max = max.replace( styleRegex, function( all, g1, g2, g3 ) {
+                                return g1 + minifyCSS( g2, {} ) + g3;
+
                             });
 
                             min = pd.xmlmin( max, options.preserveComments );
                         } if( fileType === 'JS' ) {
-                            min = uglify.parse( max, {} ).print_to_string();    // option 처리
+                            min = minifyJS( max, {} );                          // option 처리
                         } if( fileType === 'CSS' ) {
-                            min = new CleanCSS( {} ).minify( max );             // option 처리
+                            min = minifyCSS( max, {} );                         // option 처리
                         }
                     } catch( err ) {
                         grunt.warn( src + '\n' + err );
@@ -123,29 +153,12 @@ module.exports = function(grunt) {
                         grunt.file.write( dest, min );
                         grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
                         helper.minMaxInfo( min, max );
-//                        tally.xml++;
                         countWithFileType( fileType );
                     }
                 }
             });
         });
 
-        if( tally.dirs ) {
-            grunt.log.write( 'Created ' + tally.dirs.toString().cyan + ' directories' );
-        }
-
-        if( tally.xml ) {
-            grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
-        }
-
-        if( tally.js ) {
-            grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
-        }
-
-        if( tally.css ) {
-            grunt.log.write( ( tally.css ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
-        }
-
-        grunt.log.writeln();
+        printSummary();
     });
 };
