@@ -9,11 +9,12 @@
 module.exports = function(grunt) {
     'use strict';
 
-    var pd = require('pretty-data').pd,
-        helper = require('grunt-lib-contrib').init(grunt),
-        uglify = require('uglify-js'),
-        _s = require('underscore.string'),
-        path = require('path');
+    var pd          = require('pretty-data').pd,
+        helper      = require('grunt-lib-contrib').init(grunt),
+        uglify      = require('uglify-js'),
+        _s          = require('underscore.string'),
+        path        = require('path'),
+        CleanCSS    = require('clean-css');
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
         var options = this.options({
@@ -100,22 +101,20 @@ module.exports = function(grunt) {
 
                     max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
 
-                    if( fileType === 'XML' ) {
-                        try {
+                    try {
+                        if( fileType === 'XML' ) {
                             max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
                                 return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
                             });
-                        } catch( err ) {
-                            grunt.warn( src + '\n' + err );
-                        }
 
-                        try {
                             min = pd.xmlmin( max, options.preserveComments );
-                        } catch( err ) {
-                            grunt.warn( src + '\n' + err );
+                        } if( fileType === 'JS' ) {
+                            min = uglify.parse( max, {} ).print_to_string();    // option 처리
+                        } if( fileType === 'CSS' ) {
+                            min = new CleanCSS( {} ).minify( max );             // option 처리
                         }
-                    } if( fileType === 'JS' ) {
-                        min = uglify.parse( max, {} ).print_to_string();
+                    } catch( err ) {
+                        grunt.warn( src + '\n' + err );
                     }
 
                     if( min.length < 1 ) {
@@ -136,11 +135,15 @@ module.exports = function(grunt) {
         }
 
         if( tally.xml ) {
-            grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xmls' );
+            grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
         }
 
         if( tally.js ) {
-            grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' jses' );
+            grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
+        }
+
+        if( tally.css ) {
+            grunt.log.write( ( tally.css ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
         }
 
         grunt.log.writeln();

@@ -32,7 +32,8 @@
     "grunt-lib-contrib": "~0.6.1",
     "uglify-js": "~2.4.3",
     "grunt-contrib-copy": "~0.4.1",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "clean-css": "~2.0.0"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.4.0",
