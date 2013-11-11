@@ -21,18 +21,51 @@ module.exports = function(grunt) {
 		    }),
             dest,
             isExpandedPair,
+            fileType,
             tally = {
                 dirs: 0,
-                xml: 0
+                xml: 0,
+                js: 0,
+                css: 0,
+                png: 0,
+                jpg: 0
             },
             scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
-            min,
-            max,
+            min = '',
+            max = '',
             detectDestType = function( dest ) {
                 if( _s.endsWith( dest, '/' ) ) {
                     return 'directory';
                 } else {
                     return 'file';
+                }
+            },
+            detectFileType = function( src ) {
+                if( _s.endsWith( src, '.xml' ) ) {
+                    return 'XML';
+                } else if( _s.endsWith( src, '.js' ) ) {
+                    return 'JS';
+                } else if( _s.endsWith( src, '.css' ) ) {
+                    return 'CSS';
+                } else if( _s.endsWith( src, '.png' ) ) {
+                    return 'PNG';
+                } else if( _s.endsWith( src, '.jpg' ) ) {
+                    return 'JPG';
+                } else {
+                    return '';
+                }
+            },
+            countWithFileType = function( fileType ) {
+                if( fileType === 'XML' ) {
+                    tally.xml++;
+                } else if( fileType === 'JS' ) {
+                    tally.js++;
+                } else if( fileType === 'CSS' ) {
+                    tally.css++;
+                } else if( fileType === 'PNG' ) {
+                    tally.png++;
+                } else if( fileType === 'JPG' ) {
+                    tally.jpg++;
                 }
             },
             unixifyPath = function( filepath ) {
@@ -60,31 +93,39 @@ module.exports = function(grunt) {
                     grunt.file.mkdir( dest );
                     tally.dirs++;
                 } else {
-                    grunt.verbose.writeln('Minifing ' + src.cyan + ' -> ' + dest.cyan);
+                    fileType = detectFileType( src );
+                    grunt.verbose.writeln( fileType + ' Minifing ' + src.cyan + ' -> ' + dest.cyan);
+
                     debugger;
+
                     max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
 
-                    try {
-                        max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
-                            return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
-                        });
-                    } catch( err ) {
-                        grunt.warn( src + '\n' + err );
-                    }
+                    if( fileType === 'XML' ) {
+                        try {
+                            max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
+                                return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
+                            });
+                        } catch( err ) {
+                            grunt.warn( src + '\n' + err );
+                        }
 
-                    try {
-                        min = pd.xmlmin( max, options.preserveComments );
-                    } catch( err ) {
-                        grunt.warn( src + '\n' + err );
+                        try {
+                            min = pd.xmlmin( max, options.preserveComments );
+                        } catch( err ) {
+                            grunt.warn( src + '\n' + err );
+                        }
+                    } if( fileType === 'JS' ) {
+                        min = uglify.parse( max, {} ).print_to_string();
                     }
 
                     if( min.length < 1 ) {
-                        grunt.log.warn( 'Destination not written because minified XML was empty.' );
+                        grunt.log.warn( 'Destination not written because minified ' + src.cyan + ' was empty.' );
                     } else {
                         grunt.file.write( dest, min );
-                        grunt.verbose.writeln( 'Minifing ' + src.cyan + ' -> ' + dest.cyan );
+                        grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
                         helper.minMaxInfo( min, max );
-                        tally.xml++;
+//                        tally.xml++;
+                        countWithFileType( fileType );
                     }
                 }
             });
@@ -96,6 +137,10 @@ module.exports = function(grunt) {
 
         if( tally.xml ) {
             grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xmls' );
+        }
+
+        if( tally.js ) {
+            grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' jses' );
         }
 
         grunt.log.writeln();
