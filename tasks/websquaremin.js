@@ -12,7 +12,8 @@ module.exports = function(grunt) {
     var pd = require('pretty-data').pd,
         helper = require('grunt-lib-contrib').init(grunt),
         uglify = require('uglify-js'),
-        _s = require('underscore.string');
+        _s = require('underscore.string'),
+        path = require('path');
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
         var options = this.options({
@@ -22,8 +23,11 @@ module.exports = function(grunt) {
             isExpandedPair,
             tally = {
                 dirs: 0,
-                files: 0
+                xml: 0
             },
+            scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
+            min,
+            max,
             detectDestType = function( dest ) {
                 if( _s.endsWith( dest, '/' ) ) {
                     return 'directory';
@@ -31,93 +35,69 @@ module.exports = function(grunt) {
                     return 'file';
                 }
             },
-            unixifyPath = function(filepath) {
-                if (process.platform === 'win32') {
-                    return filepath.replace(/\\/g, '/');
+            unixifyPath = function( filepath ) {
+                if( process.platform === 'win32' ) {
+                    return filepath.replace( /\\/g, '/' );
                 } else {
                     return filepath;
                 }
             };
 
-        grunt.verbose.writeflags(options, 'Options');
+        grunt.verbose.writeflags( options, 'Options' );
 
         this.files.forEach( function( filePair ) {
-//            debugger;
-
             isExpandedPair = filePair.orig.expand || false;
 
             filePair.src.forEach( function( src ) {
-                debugger;
                 if( detectDestType( filePair.dest ) === 'directory' ) {
-                    dest = (isExpandedPair) ? filePair.dest : unixifyPath(path.join(filePair.dest, src));
+                    dest = (isExpandedPair) ? filePair.dest : unixifyPath( path.join( filePair.dest, src ) );
                 } else {
                     dest = filePair.dest;
                 }
 
-                if (grunt.file.isDir(src)) {
-                    grunt.verbose.writeln('Creating ' + dest.cyan);
-//                    grunt.file.mkdir(dest);
+                if( grunt.file.isDir( src ) ) {
+                    grunt.verbose.writeln( 'Creating ' + dest.cyan );
+                    grunt.file.mkdir( dest );
                     tally.dirs++;
                 } else {
                     grunt.verbose.writeln('Minifing ' + src.cyan + ' -> ' + dest.cyan);
-//                    grunt.file.copy(src, dest, copyOptions);
-//                    if (options.mode !== false) {
-//                        fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);
-//                    }
-                    tally.files++;
+                    debugger;
+                    max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
+
+                    try {
+                        max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
+                            return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
+                        });
+                    } catch( err ) {
+                        grunt.warn( src + '\n' + err );
+                    }
+
+                    try {
+                        min = pd.xmlmin( max, options.preserveComments );
+                    } catch( err ) {
+                        grunt.warn( src + '\n' + err );
+                    }
+
+                    if( min.length < 1 ) {
+                        grunt.log.warn( 'Destination not written because minified XML was empty.' );
+                    } else {
+                        grunt.file.write( dest, min );
+                        grunt.verbose.writeln( 'Minifing ' + src.cyan + ' -> ' + dest.cyan );
+                        helper.minMaxInfo( min, max );
+                        tally.xml++;
+                    }
                 }
             });
         });
 
-        if (tally.dirs) {
-            grunt.log.write('Created ' + tally.dirs.toString().cyan + ' directories');
+        if( tally.dirs ) {
+            grunt.log.write( 'Created ' + tally.dirs.toString().cyan + ' directories' );
         }
 
-        if (tally.files) {
-            grunt.log.write((tally.dirs ? ', minified ' : 'Minified ') + tally.files.toString().cyan + ' files');
+        if( tally.xml ) {
+            grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xmls' );
         }
 
         grunt.log.writeln();
-
-
-/*
-        this.files.forEach(function (file) {
-            var scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
-                min,
-                max = file.src.filter(function(filepath) {
-                    // Warn on and remove invalid source files (if nonull was set).
-                    if (!grunt.file.exists(filepath)) {
-                        grunt.log.warn('Source file "' + filepath + '" not found.');
-                        return false;
-                    }
-
-                    return true;
-                })
-                    .map(grunt.file.read)
-                    .join(grunt.util.normalizelf(grunt.util.linefeed));
-
-            try {
-                max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
-                    return g1 + uglify.parse( g2, {} ).print_to_string() + g3;
-                });
-            } catch (err) {
-                grunt.warn(file.src + '\n' + err);
-            }
-
-            try {
-                min = pd.xmlmin(max, options.preserveComments);
-            } catch (err) {
-                grunt.warn(file.src + '\n' + err);
-            }
-
-            if (min.length < 1) {
-                grunt.log.warn('Destination not written because minified XML was empty.');
-            } else {
-                grunt.file.write(file.dest, min);
-                grunt.log.writeln('File "' + file.dest + '" created.');
-                helper.minMaxInfo(min, max);
-            }
-        });
-*/
     });
 };
