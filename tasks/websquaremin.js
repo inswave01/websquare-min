@@ -84,20 +84,26 @@ module.exports = function(grunt) {
                 return new CleanCSS( options ).minify( source );
             },
             printSummary = function() {
+                var isWrite = false;
+
                 if( tally.dirs ) {
                     grunt.log.write( 'Created ' + tally.dirs.toString().cyan + ' directories' );
+                    isWrite = true;
                 }
 
                 if( tally.xml ) {
-                    grunt.log.write( ( tally.xml ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
+                    isWrite = true;
                 }
 
                 if( tally.js ) {
-                    grunt.log.write( ( tally.js ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
+                    isWrite = true;
                 }
 
                 if( tally.css ) {
-                    grunt.log.write( ( tally.css ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
+//                    isWrite = true;
                 }
 
                 grunt.log.writeln();
