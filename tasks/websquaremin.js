@@ -31,8 +31,10 @@ module.exports = function(grunt) {
                 png: 0,
                 jpg: 0
             },
-            scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/script>)/ig,
-            styleRegex = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?><!\[CDATA\[)([\s\S]*?)(\]\]><\/style>)/ig,
+            scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/script>)/ig,
+            styleRegex  = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/style>)/ig,
+            exceptRegex = /return/,
+            eventRegex  = /ev\:event/,
             min = '',
             max = '',
             detectDestType = function( dest ) {
@@ -50,9 +52,11 @@ module.exports = function(grunt) {
                 } else if( _s.endsWith( src, '.css' ) ) {
                     return 'CSS';
                 } else if( _s.endsWith( src, '.png' ) ) {
-                    return 'PNG';
+//                    return 'PNG';
+                    return '';
                 } else if( _s.endsWith( src, '.jpg' ) ) {
-                    return 'JPG';
+//                    return 'JPG';
+                    return '';
                 } else {
                     return '';
                 }
@@ -77,8 +81,19 @@ module.exports = function(grunt) {
                     return filepath;
                 }
             },
-            minifyJS = function( source, options ) {
-                return uglify.parse( source, options ).print_to_string();
+            minifyJS = function( source, options, startTag ) {
+                debugger;
+                if( startTag && eventRegex.test(startTag) && exceptRegex.test( source ) ) {
+                    grunt.verbose.writeln( 'skip - return is included in source.' );
+                    return source;
+                } else {
+                    if( eventRegex.test(source) ) {
+                        grunt.verbose.writeln( 'skip - ev:event is included in source.' );
+                        return source;
+                    } else {
+                        return uglify.parse( source, options ).print_to_string();
+                    }
+                }
             },
             minifyCSS = function( source, options ) {
                 return new CleanCSS( options ).minify( source );
@@ -128,38 +143,43 @@ module.exports = function(grunt) {
                     tally.dirs++;
                 } else {
                     fileType = detectFileType( src );
-                    grunt.verbose.writeln( fileType + ' Minifing ' + src.cyan + ' -> ' + dest.cyan);
 
-                    max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
+                    if( fileType ) {
+                        grunt.verbose.writeln( fileType + ' Minifing ' + src.cyan + ' -> ' + dest.cyan);
 
-                    try {
-                        if( fileType === 'XML' ) {
-                            max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
-                                return g1 + minifyJS( g2, {} ) + g3;
-                            });
+                        max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
 
-                            max = max.replace( styleRegex, function( all, g1, g2, g3 ) {
-                                return g1 + minifyCSS( g2, {} ) + g3;
+                        try {
+                            if( fileType === 'XML' ) {
+                                max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
+                                    return g1 + minifyJS( g2, {}, g1 ) + g3;
+                                });
 
-                            });
+                                max = max.replace( styleRegex, function( all, g1, g2, g3 ) {
+                                    return g1 + minifyCSS( g2, {} ) + g3;
 
-                            min = pd.xmlmin( max, options.preserveComments );
-                        } if( fileType === 'JS' ) {
-                            min = minifyJS( max, {} );                          // option 처리
-                        } if( fileType === 'CSS' ) {
-                            min = minifyCSS( max, {} );                         // option 처리
+                                });
+
+                                min = pd.xmlmin( max, options.preserveComments );
+                            } if( fileType === 'JS' ) {
+                                min = minifyJS( max, {} );                          // option 처리
+                            } if( fileType === 'CSS' ) {
+                                min = minifyCSS( max, {} );                         // option 처리
+                            }
+                        } catch( err ) {
+                            grunt.warn( src + '\n' + err );
                         }
-                    } catch( err ) {
-                        grunt.warn( src + '\n' + err );
-                    }
 
-                    if( min.length < 1 ) {
-                        grunt.log.warn( 'Destination not written because minified ' + src.cyan + ' was empty.' );
+                        if( min.length < 1 ) {
+                            grunt.log.warn( 'Destination not written because minified ' + src.cyan + ' was empty.' );
+                        } else {
+                            grunt.file.write( dest, min );
+                            grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
+                            helper.minMaxInfo( min, max );
+                            countWithFileType( fileType );
+                        }
                     } else {
-                        grunt.file.write( dest, min );
-                        grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
-                        helper.minMaxInfo( min, max );
-                        countWithFileType( fileType );
+                        grunt.verbose.writeln( src.cyan + ' is skiped' );
                     }
                 }
             });
