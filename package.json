@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-websquaremin",
   "description": "Minify WebSquare XML",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/inswave/grunt-contrib-websquaremin",
   "author": {
     "name": "maninzoo",
