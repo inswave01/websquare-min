@@ -28,3 +28,4 @@ _Run this task with the `grunt websquaremin` command._
 * 2013-11-08   v0.1.0   Initial release.
 * 2013-11-11   v0.2.0   Directory is traversed, Add js/css file minify feature.
 * 2013-11-12   v0.3.1   Handle exception.
+* 2013-11-12   v0.4.0   Add filtering.

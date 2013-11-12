@@ -36,6 +36,29 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ]
+            },
+            traverse_reg: {
+                options: {
+                    filter: /\S*subdir\S*/
+                },
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ]
+            },
+            traverse_func: {
+                options: {
+                    filter: function ( source ) {
+//                                if ( source.indexOf('.xml') > 0 ) {
+//                                    return false;
+//                                } else {
+//                                    return true;
+//                                }
+                                return source.indexOf('.xml') <= 0;
+                            }
+                },
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ]
             }
         }
     });
@@ -46,5 +69,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['clean:tests', 'websquaremin:compile']);
     grunt.registerTask('traverse', ['clean:traverse', 'websquaremin:traverse']);
+    grunt.registerTask('traverse_filter01', ['clean:traverse', 'websquaremin:traverse_reg']);
+    grunt.registerTask('traverse_filter02', ['clean:traverse', 'websquaremin:traverse_func']);
     grunt.registerTask('default', ['test']);
 };
