@@ -35,6 +35,7 @@ module.exports = function(grunt) {
             styleRegex  = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/style>)/ig,
             exceptRegex = /return\s*/,
             eventRegex  = /ev\:event/,
+            pseudoFunc  = ['(function(){', '})'],
             min = '',
             max = '',
             checkFilter = function ( source ) {
@@ -93,16 +94,15 @@ module.exports = function(grunt) {
             },
             minifyJS = function ( source, options, startTag ) {
                 if( startTag && eventRegex.test(startTag) && exceptRegex.test( source ) ) {
-                    grunt.verbose.writeln( 'skip - return is included in source.' );
+                    source = uglify.parse( pseudoFunc[0] + source + pseudoFunc[1], options ).print_to_string();
+                    source = source.substring( pseudoFunc[0].length, source.lastIndexOf(pseudoFunc[1]) );
                     return source;
-                } else {
-                    if( eventRegex.test(source) ) {
-                        grunt.verbose.writeln( 'skip - ev:event is included in source.' );
-                        return source;
-                    } else {
-                        return uglify.parse( source, options ).print_to_string();
-                    }
+                } else if( eventRegex.test(source) ) {
+                    grunt.verbose.writeln( 'skip - ev:event is included in source.' );
+                    return source;
                 }
+
+                return uglify.parse( source, options ).print_to_string();
             },
             minifyCSS = function ( source, options ) {
                 return new CleanCSS( options ).minify( source );
