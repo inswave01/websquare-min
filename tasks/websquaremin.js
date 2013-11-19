@@ -33,7 +33,7 @@ module.exports = function(grunt) {
             },
             scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/script>)/ig,
             styleRegex  = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/style>)/ig,
-            exceptRegex = /return\s+/,
+            exceptRegex = /return\s*/,
             eventRegex  = /ev\:event/,
             min = '',
             max = '',
