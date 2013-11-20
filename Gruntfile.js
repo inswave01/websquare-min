@@ -59,6 +59,24 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ]
+            },
+            traverse_option: {
+                options: {
+                    js: {
+                        compress: {
+                            booleans: false
+                        },
+                        mangle: {
+                            except: ['returnValue']
+                        }
+                    },
+                    css: {
+
+                    }
+                },
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ]
             }
         }
     });
@@ -71,5 +89,6 @@ module.exports = function(grunt) {
     grunt.registerTask('traverse', ['clean:traverse', 'websquaremin:traverse']);
     grunt.registerTask('traverse_filter01', ['clean:traverse', 'websquaremin:traverse_reg']);
     grunt.registerTask('traverse_filter02', ['clean:traverse', 'websquaremin:traverse_func']);
+    grunt.registerTask('traverse_option', ['clean:traverse', 'websquaremin:traverse_option']);
     grunt.registerTask('default', ['test']);
 };

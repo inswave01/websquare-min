@@ -20,7 +20,6 @@ module.exports = function(grunt) {
         var options = this.options({
                 preserveComments: false
             }),
-//            xmlOptions = options.xml || {},
             jsOptions  = options.js || {},
             cssOptions = options.css || {},
             ast,
@@ -99,7 +98,6 @@ module.exports = function(grunt) {
             },
             _minifyJS = function ( ast ) {
                 if ( jsOptions.compress !== false ) {
-                    debugger;
                     ast.figure_out_scope();
 
                     if ( jsOptions.compress.warnings !== true ) {
@@ -159,8 +157,15 @@ module.exports = function(grunt) {
                 grunt.log.writeln();
             };
 
-
         grunt.verbose.writeflags( options, 'Options' );
+
+        // side_effects 옵션이 on 인 경우,
+        // event handler 스크립트 일부가 drop 되는 현상이 있어서
+        // 해당 옵션을 off 로 고정시킴
+        if ( !jsOptions.compress ) {
+            jsOptions.compress = {};
+        }
+        jsOptions.compress.side_effects = false;
 
         this.files.forEach( function( filePair ) {
             isExpandedPair = filePair.orig.expand || false;
@@ -199,9 +204,9 @@ module.exports = function(grunt) {
 
                                     min = pd.xmlmin( max, options.preserveComments );
                                 } if( fileType === 'JS' ) {
-                                    min = minifyJS( max, jsOptions );                          // option 처리
+                                    min = minifyJS( max, jsOptions );
                                 } if( fileType === 'CSS' ) {
-                                    min = minifyCSS( max, cssOptions );                         // option 처리
+                                    min = minifyCSS( max, cssOptions );
                                 }
                             } catch( err ) {
                                 grunt.warn( src + '\n' + err );

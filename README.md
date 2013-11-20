@@ -30,3 +30,4 @@ _Run this task with the `grunt websquaremin` command._
 * 2013-11-12   v0.3.1   Handle exception.
 * 2013-11-12   v0.4.0   Add filtering.
 * 2013-11-19   v0.4.1   return keyword in event handler is settled.
+* 2013-11-20   v0.4.2   compress & mangle add.
