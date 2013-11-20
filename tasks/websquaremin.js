@@ -20,6 +20,11 @@ module.exports = function(grunt) {
         var options = this.options({
                 preserveComments: false
             }),
+//            xmlOptions = options.xml || {},
+            jsOptions  = options.js || {},
+            cssOptions = options.css || {},
+            ast,
+            compressor,
             dest,
             isExpandedPair,
             fileType,
@@ -92,9 +97,29 @@ module.exports = function(grunt) {
                     return filepath;
                 }
             },
+            _minifyJS = function ( ast ) {
+                if ( jsOptions.compress !== false ) {
+                    debugger;
+                    ast.figure_out_scope();
+
+                    if ( jsOptions.compress.warnings !== true ) {
+                        jsOptions.compress.warnings = false;
+                    }
+                    compressor = uglify.Compressor( jsOptions.compress );
+                    ast = ast.transform( compressor );
+                }
+
+                if ( jsOptions.mangle !== false ) {
+                    ast.figure_out_scope();
+                    ast.compute_char_frequency();
+                    ast.mangle_names( jsOptions.mangle );
+                }
+                return ast.print_to_string();
+            },
             minifyJS = function ( source, options, startTag ) {
                 if( startTag && eventRegex.test(startTag) && exceptRegex.test( source ) ) {
-                    source = uglify.parse( pseudoFunc[0] + source + pseudoFunc[1], options ).print_to_string();
+                    ast = uglify.parse( pseudoFunc[0] + source + pseudoFunc[1], options );
+                    source = _minifyJS( ast );
                     source = source.substring( pseudoFunc[0].length, source.lastIndexOf(pseudoFunc[1]) );
                     return source;
                 } else if( eventRegex.test(source) ) {
@@ -102,7 +127,8 @@ module.exports = function(grunt) {
                     return source;
                 }
 
-                return uglify.parse( source, options ).print_to_string();
+                ast =  uglify.parse( source, options );
+                return _minifyJS( ast );
             },
             minifyCSS = function ( source, options ) {
                 return new CleanCSS( options ).minify( source );
@@ -163,19 +189,19 @@ module.exports = function(grunt) {
                             try {
                                 if( fileType === 'XML' ) {
                                     max = max.replace( scriptRegex, function( all, g1, g2, g3 ) {
-                                        return g1 + minifyJS( g2, {}, g1 ) + g3;
+                                        return g1 + minifyJS( g2, jsOptions, g1 ) + g3;
                                     });
 
                                     max = max.replace( styleRegex, function( all, g1, g2, g3 ) {
-                                        return g1 + minifyCSS( g2, {} ) + g3;
+                                        return g1 + minifyCSS( g2, cssOptions ) + g3;
 
                                     });
 
                                     min = pd.xmlmin( max, options.preserveComments );
                                 } if( fileType === 'JS' ) {
-                                    min = minifyJS( max, {} );                          // option 처리
+                                    min = minifyJS( max, jsOptions );                          // option 처리
                                 } if( fileType === 'CSS' ) {
-                                    min = minifyCSS( max, {} );                         // option 처리
+                                    min = minifyCSS( max, cssOptions );                         // option 처리
                                 }
                             } catch( err ) {
                                 grunt.warn( src + '\n' + err );
