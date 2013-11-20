@@ -23,8 +23,8 @@ grunt.loadNpmTasks('grunt-contrib-websquaremin');
 ## Websquaremin task
 _Run this task with the `grunt websquaremin` command._
 
-## Detail Guide
-[grunt contrib websquaremin 사용 방법](https://github.com/inswave/grunt-contrib-websquaremin.wiki.git)
+## Detailed Guide
+[grunt contrib websquaremin 사용 방법](https://github.com/inswave/grunt-contrib-websquaremin/wiki/grunt-contrib-websquaremin-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
 
 ## Release History
 
