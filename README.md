@@ -1,4 +1,4 @@
-# grunt-contrib-websquaremin
+# websquare-min
 
 > Minify WebSquare XML ( include internal javascript )
 
@@ -9,13 +9,13 @@ This plugin requires Grunt `~0.4.0`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-contrib-websquaremin --save-dev
+npm install websquare-min --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-contrib-websquaremin');
+grunt.loadNpmTasks('websquare-min');
 ```
 
 *This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4).*
@@ -24,7 +24,7 @@ grunt.loadNpmTasks('grunt-contrib-websquaremin');
 _Run this task with the `grunt websquaremin` command._
 
 ## Detailed Guide
-[grunt contrib websquaremin 사용 방법](https://github.com/inswave/grunt-contrib-websquaremin/wiki/grunt-contrib-websquaremin-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
+[websquare-min 사용 방법](https://github.com/inswave/grunt-contrib-websquaremin/wiki/websquare-min-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
 
 ## Release History
 
