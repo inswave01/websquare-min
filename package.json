@@ -1,23 +1,23 @@
 {
-  "name": "grunt-contrib-websquaremin",
+  "name": "websquare-min",
   "description": "Minify WebSquare XML",
   "version": "0.4.2",
-  "homepage": "https://github.com/inswave/grunt-contrib-websquaremin",
+  "homepage": "https://github.com/inswave/websquare-min",
   "author": {
     "name": "maninzoo",
     "email": "maninzoo0@inswave.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/inswave/grunt-contrib-websquaremin.git"
+    "url": "git://github.com/inswave/websquare-min.git"
   },
   "bugs": {
-    "url": "https://github.com/inswave/grunt-contrib-websquaremin/issues"
+    "url": "https://github.com/inswave/websquare-min/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/inswave/grunt-contrib-websquaremin/blob/master/LICENSE"
+      "url": "https://github.com/inswave/websquare-min/blob/master/LICENSE"
     }
   ],
   "main": "Gruntfile.js",
