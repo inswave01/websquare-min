@@ -1,6 +1,6 @@
 /*
- * grunt-contrib-websquaremin
- * https://github.com/inswave/grunt-contrib-websquaremin
+ * websquare-min
+ * https://github.com/inswave/websquare-min
  *
  * Copyright (c) 2013 inswave
  * Licensed under the MIT license.
@@ -10,11 +10,12 @@ module.exports = function(grunt) {
     'use strict';
 
     var pd          = require('pretty-data').pd,
-        helper      = require('grunt-lib-contrib').init(grunt),
+        maxmin      = require('maxmin'),
         uglify      = require('uglify-js'),
         _s          = require('underscore.string'),
         path        = require('path'),
-        CleanCSS    = require('clean-css');
+        CleanCSS    = require('clean-css' ),
+        chalk       = require('chalk');
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
         var options = this.options({
@@ -135,22 +136,22 @@ module.exports = function(grunt) {
                 var isWrite = false;
 
                 if( tally.dirs ) {
-                    grunt.log.write( 'Created ' + tally.dirs.toString().cyan + ' directories' );
+                    grunt.log.write( 'Created ' + chalk.green(tally.dirs) + ' directories' );
                     isWrite = true;
                 }
 
                 if( tally.xml ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.xml.toString().cyan + ' xml' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.xml) + ' xml' );
                     isWrite = true;
                 }
 
                 if( tally.js ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.js.toString().cyan + ' js' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.js) + ' js' );
                     isWrite = true;
                 }
 
                 if( tally.css ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.css.toString().cyan + ' css' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.css) + ' css' );
 //                    isWrite = true;
                 }
 
@@ -217,7 +218,7 @@ module.exports = function(grunt) {
                             } else {
                                 grunt.file.write( dest, min );
                                 grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
-                                helper.minMaxInfo( min, max );
+                                grunt.verbose.writeln( maxmin( max, min ) );
                                 countWithFileType( fileType );
                             }
                         } else {

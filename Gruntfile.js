@@ -1,6 +1,6 @@
 /*
- * grunt-contrib-websquaremin
- * https://github.com/inswave/grunt-contrib-websquaremin
+ * websquare-min
+ * https://github.com/inswave/websquare-min
  *
  * Copyright (c) 2013 inswave
  * Licensed under the MIT license.
@@ -8,6 +8,8 @@
 
 module.exports = function(grunt) {
     'use strict';
+
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
         clean: {
@@ -82,8 +84,6 @@ module.exports = function(grunt) {
     });
 
     grunt.loadTasks('tasks');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('test', ['clean:tests', 'websquaremin:compile']);
     grunt.registerTask('traverse', ['clean:traverse', 'websquaremin:traverse']);
