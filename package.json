@@ -28,15 +28,17 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt-contrib-clean": "~0.4.0",
-    "pretty-data": "~0.40.0",
-    "uglify-js": "~2.4.3",
-    "grunt-contrib-copy": "~0.4.1",
-    "underscore.string": "~2.3.3",
+    "buffer": "^2.8.2",
+    "chalk": "~0.4.0",
     "clean-css": "~2.0.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "iconv": "^2.1.4",
     "load-grunt-tasks": "~0.4.0",
     "maxmin": "~0.1.0",
-    "chalk": "~0.4.0"
+    "pretty-data": "~0.40.0",
+    "uglify-js": "~2.4.3",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.4.0",

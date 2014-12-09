@@ -15,7 +15,12 @@ module.exports = function(grunt) {
         _s          = require('underscore.string'),
         path        = require('path'),
         CleanCSS    = require('clean-css' ),
-        chalk       = require('chalk');
+        chalk       = require('chalk'),
+        fs          = require('fs'),
+        Iconv       = require('iconv').Iconv,
+        utf82euckr  = new Iconv( 'UTF-8', 'EUC-KR'),
+        euckr2utf8  = new Iconv( 'EUC-KR', 'UTF-8'),
+        Buffer      = require('buffer').Buffer;
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
         var options = this.options({
@@ -23,6 +28,7 @@ module.exports = function(grunt) {
             }),
             jsOptions  = options.js || {},
             cssOptions = options.css || {},
+            encoding = ( options.encoding || 'UTF-8' ).toLowerCase(),
             ast,
             compressor,
             dest,
@@ -190,7 +196,15 @@ module.exports = function(grunt) {
                         if( fileType ) {
                             grunt.verbose.writeln( fileType + ' Minifing ' + src.cyan + ' -> ' + dest.cyan );
 
-                            max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
+                            if ( encoding === 'euc-kr' ) {
+                                max = fs.readFileSync( src );
+                                grunt.verbose.writeln( 'contents ' + max );
+                                max = euckr2utf8.convert(max).toString('UTF-8');
+                                max += grunt.util.normalizelf( grunt.util.linefeed );
+                                grunt.verbose.writeln( 'convert ' + max );
+                            } else {
+                                max = grunt.file.read( src ) + grunt.util.normalizelf( grunt.util.linefeed );
+                            }
 
                             try {
                                 if( fileType === 'XML' ) {
@@ -216,6 +230,10 @@ module.exports = function(grunt) {
                             if( min.length < 1 ) {
                                 grunt.log.warn( 'Destination not written because minified ' + src.cyan + ' was empty.' );
                             } else {
+                                if ( encoding === 'euc-kr' ) {
+                                    min = utf82euckr.convert( new Buffer( min ) );
+                                }
+
                                 grunt.file.write( dest, min );
                                 grunt.verbose.writeln( fileType + ' minified ' + src.cyan + ' -> ' + dest.cyan );
                                 grunt.verbose.writeln( maxmin( max, min ) );
