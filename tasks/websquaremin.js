@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         var options = this.options({
                 preserveComments: false
             }),
-            jsOptions  = options.js || {},
+            jsOptions  = options.js || {compress: {booleans : true},mangle: {booleans : false,except: ['jQuery']}},
             cssOptions = options.css || {},
             encoding = ( options.encoding || 'UTF-8' ).toLowerCase(),
             ast,
@@ -42,7 +42,8 @@ module.exports = function(grunt) {
                 png: 0,
                 jpg: 0
             },
-            scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/script>)/ig,
+            scriptRegex = /(<script[\s\S]*>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/script>)/ig,
+//            scriptRegex = /(<script[\s\S]*?type=[\"\']javascript[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/script>)/ig,
             styleRegex  = /(<style[\s\S]*?type=[\"\']text\/css[\"\'][\s\S]*?>[\s]*<!\[CDATA\[)([\s\S]*?)(\]\]>[\s]*<\/style>)/ig,
             exceptRegex = /return\s*/,
             eventRegex  = /ev\:event/,
@@ -104,7 +105,7 @@ module.exports = function(grunt) {
                 }
             },
             _minifyJS = function ( ast ) {
-                if ( jsOptions.compress !== false ) {
+                if ( jsOptions.compress.booleans !== false ) {
                     ast.figure_out_scope();
 
                     if ( jsOptions.compress.warnings !== true ) {
@@ -114,7 +115,7 @@ module.exports = function(grunt) {
                     ast = ast.transform( compressor );
                 }
 
-                if ( jsOptions.mangle !== false ) {
+                if ( jsOptions.mangle.booleans !== false ) {
                     ast.figure_out_scope();
                     ast.compute_char_frequency();
                     ast.mangle_names( jsOptions.mangle );
@@ -142,27 +143,34 @@ module.exports = function(grunt) {
                 var isWrite = false;
 
                 if( tally.dirs ) {
-                    grunt.log.write( 'Created ' + chalk.green(tally.dirs) + ' directories' );
+                    grunt.log.write( 'Created ' + tally.dirs + ' directories' );
                     isWrite = true;
                 }
 
                 if( tally.xml ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.xml) + ' xml' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.xml + ' xml' );
                     isWrite = true;
                 }
 
                 if( tally.js ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.js) + ' js' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.js + ' js' );
                     isWrite = true;
                 }
 
                 if( tally.css ) {
-                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + chalk.green(tally.css) + ' css' );
+                    grunt.log.write( ( isWrite ? ', minified ' : 'Minified ' ) + tally.css + ' css' );
 //                    isWrite = true;
                 }
 
                 grunt.log.writeln();
             };
+
+            grunt.log.write( 'this.options : ' + JSON.stringify(options) );
+            grunt.log.writeln();
+            grunt.log.write( 'js.options.compress : ' + JSON.stringify(jsOptions.compress) );
+            grunt.log.writeln();
+            grunt.log.write( 'js.options.mangle : ' + JSON.stringify(jsOptions.mangle) );
+            grunt.log.writeln();
 
         grunt.verbose.writeflags( options, 'Options' );
 

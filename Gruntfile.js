@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         clean: {
-            tests: ['tmp'],
+            tests: ['tmp/*'],
             traverse: ['dest']
         },
         copy: {
@@ -30,11 +30,39 @@ module.exports = function(grunt) {
         },
         websquaremin: {
             compile: {
+                options: {
+                    js: {
+                        compress: {
+                            booleans : true
+                        },
+                        mangle: {
+                            booleans : false,
+                            except: ['jQuery']
+                        }
+                    },
+                    css: {
+
+                    }
+                },
                 files: {
                     'tmp/treeview_basic_1.xml': ['test/treeview_basic_1.xml']
                 }
             },
             traverse: {
+                options: {
+                    js: {
+                        compress: {
+                            booleans : true
+                        },
+                        mangle: {
+                            booleans : false,
+                            except: ['jQuery']
+                        }
+                    },
+                    css: {
+
+                    }
+                },
                 files: [
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ]
@@ -88,6 +116,15 @@ module.exports = function(grunt) {
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ]
             }
+        },
+        concat: {
+          options: {
+            separator: ';',
+          },
+          dist: {
+            src: ['dest/lib/ngmf.js', 'dest/lib/pubComm.js', 'dest/lib/ZAPP_Calendar.js', 'dest/lib/**'],
+            dest: 'dest/lib/ngmf.all.min.js',
+          }
         }
     });
 
@@ -95,6 +132,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['clean:tests', 'websquaremin:compile']);
     grunt.registerTask('traverse', ['clean:traverse', 'websquaremin:traverse']);
+    grunt.registerTask('uglify', ['clean:traverse', 'websquaremin:traverse', 'concat:dist']);
     grunt.registerTask('traverse_filter01', ['clean:traverse', 'websquaremin:traverse_reg']);
     grunt.registerTask('traverse_filter02', ['clean:traverse', 'websquaremin:traverse_func']);
     grunt.registerTask('traverse_option', ['clean:traverse', 'websquaremin:traverse_option']);
