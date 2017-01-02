@@ -1,7 +1,0 @@
-.git*
-.idea
-node_modules/
-tmp/
-dest/
-.gitignore
-npm-debug.log

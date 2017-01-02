@@ -119,11 +119,40 @@ module.exports = function(grunt) {
         },
         concat: {
           options: {
-            separator: ';',
+            separator: ';'
           },
           dist: {
             src: ['dest/lib/ngmf.js', 'dest/lib/pubComm.js', 'dest/lib/ZAPP_Calendar.js', 'dest/lib/**'],
-            dest: 'dest/lib/ngmf.all.min.js',
+            dest: 'dest/lib/ngmf.all.min.js'
+          }
+        },
+        pull: {
+          test: {
+            options: {
+              host: '192.168.1.105',
+              port: 22,
+              username: 'guest1',
+              password: 'pass',
+              compression: 6,
+              remotePath: './Samples',
+              localPath: './src'
+            }
+          }
+        },
+        push: {
+          test: {
+            options: {
+              host: '192.168.1.105',
+              port: 22,
+              username: 'guest1',
+              password: 'pass',
+              compression: 6,
+              fileName: 'websquaremin',
+              remotePath: './Samples_Dest',
+              localPath: './dest/Samples',
+              unpack: true,
+              removeTarball: true
+            }
           }
         }
     });
@@ -137,5 +166,8 @@ module.exports = function(grunt) {
     grunt.registerTask('traverse_filter02', ['clean:traverse', 'websquaremin:traverse_func']);
     grunt.registerTask('traverse_option', ['clean:traverse', 'websquaremin:traverse_option']);
     grunt.registerTask('traverse_encoding', ['clean:traverse', 'websquaremin:traverse_encoding']);
+
+    grunt.registerTask('transfer', ['pull:test', 'traverse', 'push:test']);
+
     grunt.registerTask('default', ['test']);
 };
