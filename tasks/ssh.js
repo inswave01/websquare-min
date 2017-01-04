@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           if ( typeof code === 'number' && code != 0 ) {
             exitErr = new Error('Remote process exited with code ' + code );
           } else if ( signal ) {
-           exitErr = new Error('Remote process killed signal ' + signal );
+            exitErr = new Error('Remote process killed signal ' + signal );
           }
         });
 
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         if (err) {
           console.log(err);
           conn.end();
-          done();
+          throw err;
         }
         console.log('Done pulling');
         conn.end();
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
         if (err) {
           console.log(err);
           conn.end();
-          done();
+          throw err;
         }
         console.log('Done pushing');
         conn.end();
