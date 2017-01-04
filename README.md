@@ -1,6 +1,7 @@
 # websquare-min
 
-> Minify WebSquare XML ( include internal javascript )
+> Minify WebSquare XML ( include internal javascript )  
+> 변경사항은 [Changes from 0.5.x to 1.x](https://github.com/inswave/websquare-min/wiki/Changes-from-0.5.x-to-1.x) 참조
 
 ## Getting Started
 
