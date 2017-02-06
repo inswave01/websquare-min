@@ -34,7 +34,7 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "iconv": "^2.2.1",
+    "iconv-lite": "^0.4.15",
     "load-grunt-tasks": "^3.5.2",
     "maxmin": "^2.1.0",
     "pretty-data": "^0.40.0",
