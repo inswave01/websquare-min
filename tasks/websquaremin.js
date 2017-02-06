@@ -123,18 +123,23 @@ module.exports = function(grunt) {
                 return ast.print_to_string();
             },
             minifyJS = function ( source, options, startTag ) {
-                if( startTag && eventRegex.test(startTag) && exceptRegex.test( source ) ) {
-                    ast = uglify.parse( pseudoFunc[0] + source + pseudoFunc[1], options );
-                    source = _minifyJS( ast );
-                    source = source.substring( pseudoFunc[0].length, source.lastIndexOf(pseudoFunc[1]) );
-                    return source;
-                } else if( eventRegex.test(source) ) {
-                    grunt.verbose.writeln( 'skip - ev:event is included in source.' );
+                try {
+                    if( startTag && eventRegex.test(startTag) && exceptRegex.test( source ) ) {
+                        ast = uglify.parse( pseudoFunc[0] + source + pseudoFunc[1], options );
+                        source = _minifyJS( ast );
+                        source = source.substring( pseudoFunc[0].length, source.lastIndexOf(pseudoFunc[1]) );
+                        return source;
+                    } else if( eventRegex.test(source) ) {
+                        grunt.verbose.writeln( 'skip - ev:event is included in source.' );
+                        return source;
+                    }
+
+                    ast =  uglify.parse( source, options );
+                    return _minifyJS( ast );
+                } catch(e) {
+                    console.trace( 'skip - script parse error. use original script.');
                     return source;
                 }
-
-                ast =  uglify.parse( source, options );
-                return _minifyJS( ast );
             },
             minifyCSS = function ( source, options ) {
                 return new CleanCSS( options ).minify( source );
