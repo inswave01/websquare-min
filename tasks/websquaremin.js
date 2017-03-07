@@ -17,10 +17,9 @@ module.exports = function(grunt) {
         CleanCSS    = require('clean-css' ),
         chalk       = require('chalk'),
         fs          = require('fs'),
-        iconv       = require('iconv-lite'),
-//        Iconv       = require('iconv').Iconv,
-//        utf82euckr  = new Iconv( 'UTF-8', 'EUC-KR'),
-//        euckr2utf8  = new Iconv( 'EUC-KR', 'UTF-8'),
+        Iconv       = require('iconv').Iconv,
+        utf82euckr  = new Iconv( 'UTF-8', 'EUC-KR'),
+        euckr2utf8  = new Iconv( 'EUC-KR', 'UTF-8'),
         Buffer      = require('buffer').Buffer;
 
     grunt.registerMultiTask('websquaremin', 'Minify WebSquare XML', function() {
@@ -214,8 +213,7 @@ module.exports = function(grunt) {
                                 grunt.log.warn("ICONV EUC-KR to UTF-8");
                                 max = fs.readFileSync( src );
                                 grunt.verbose.writeln( 'contents ' + max );
-//                                max = euckr2utf8.convert(max).toString('UTF-8');
-                                max = iconv.decode( iconv.encode(max, 'EUC-KR'), 'UTF-8').toString();
+                                max = euckr2utf8.convert(max).toString('UTF-8');
 
                                 max += grunt.util.normalizelf( grunt.util.linefeed );
                                 grunt.verbose.writeln( 'convert ' + max );
@@ -248,9 +246,7 @@ module.exports = function(grunt) {
                                 grunt.log.warn( 'Destination not written because minified ' + src.cyan + ' was empty.' );
                             } else {
                                 if ( encoding === 'euc-kr' ) {
-                                    //min = utf82euckr.convert( new Buffer( min ) );
-                                    grunt.log.warn("ICONV UTF-8 to EUC-KR");
-                                    max = iconv.decode( iconv.encode(max, 'UTF-8'), 'EUC-KR');
+                                    min = utf82euckr.convert( new Buffer( min ) );
                                 }
 
                                 grunt.file.write( dest, min );
