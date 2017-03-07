@@ -1,14 +1,14 @@
-FROM node:6.10.0-alpine
+FROM inswave/websquare-min:0.1
 LABEL maintainer="maninzoo@inswave.com"
 
-RUN apk add --update gcc g++ make python py-pip openssh
-RUN pip install Flask
-RUN npm install --global node-gyp grunt-cli
+#RUN apk add --update gcc g++ make python py-pip openssh
+#RUN pip install Flask
+#RUN npm install --global node-gyp grunt-cli
 
-RUN mkdir /app
+#RUN mkdir /app
 WORKDIR /app
 
-COPY package.json /app/
-RUN  yarn
+#COPY package.json /app/
+#RUN  yarn
 
-COPY . /app
+#COPY . /app
