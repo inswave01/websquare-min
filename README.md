@@ -27,6 +27,9 @@ _Run this task with the `grunt websquaremin` command._
 ## Detailed Guide
 [websquare-min 사용 방법](https://github.com/inswave/grunt-contrib-websquaremin/wiki/websquare-min-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
 
+## Docker Image
+[inswave/websquare-min](https://hub.docker.com/r/inswave/websquare-min/)
+
 ## Release History
 
 * 2014-03-03   v0.5.0   Initial release.
