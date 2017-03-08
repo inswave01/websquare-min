@@ -33,3 +33,4 @@ _Run this task with the `grunt websquaremin` command._
 ## Release History
 
 * 2014-03-03   v0.5.0   Initial release.
+* 2017-03-08   v1.0.0   Add Docker image
