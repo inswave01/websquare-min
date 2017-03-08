@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
             tests: ['tmp/*'],
-            traverse: ['dest']
+            traverse: ['dest/*']
         },
         copy: {
             main: {
