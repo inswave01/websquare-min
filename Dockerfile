@@ -1,4 +1,4 @@
-FROM inswave/websquare-min:0.2
+FROM inswave/websquare-min
 LABEL maintainer="maninzoo@inswave.com"
 
 #RUN apk add --update gcc g++ make python py-pip openssh
