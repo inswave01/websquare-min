@@ -8,7 +8,7 @@ LABEL maintainer="maninzoo@inswave.com"
 #RUN mkdir /app
 WORKDIR /app
 
-#COPY package.json /app/
-#RUN  yarn
+COPY package.json /app/
+RUN  yarn
 
-#COPY . /app
+COPY . /app
