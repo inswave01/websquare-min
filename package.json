@@ -39,7 +39,7 @@
     "maxmin": "^2.1.0",
     "pretty-data": "^0.40.0",
     "ssh2": "^0.5.4",
-    "tar-fs": "^1.15.0",
+    "tar-fs": "~> 2.0.0",
     "uglify-js": "^2.7.5",
     "underscore.string": "~> 3.3.5",
     "yarn": "^1.17.3"
